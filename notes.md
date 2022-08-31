@@ -20,7 +20,7 @@ A good way to think of TS files:
 
 https://www.typescript-training.com/course/fundamentals-v3/02-hello-typescript/
 
-## Chapter 2
+## Chapter 2: Variables & Values
 
 type inference: places where typescript infers type where no type info was provided (i.e. in `let age = 6;` `age: number`, whereas `const apples = 6` will be `apples: 6` [a literal type]). [See the link for more specific info](https://www.typescriptlang.org/docs/handbook/type-inference.html).
 
@@ -37,7 +37,7 @@ function add(a: number <!-- argument value -->, b: number): number <!-- return  
 }
 ```
 
-## Chapter 3
+## Chapter 3: Objects, Arrays, & Tuples
 
 In general, object types are defined by:
 1. The names of the properties that are (or may be) present
@@ -109,4 +109,18 @@ phones.fax
 Describing types for arrays is often as easy as adding [] to the end of the array member’s type. For example, `const fileExtensions = ['js', 'ts']` will have a type of `string[]`.
 
 ##### Tuples
+
+A (tuple)[https://en.wikipedia.org/wiki/Tuple] multi-element, ordered data structure, where position of each item has some special meaning or convention.
+
+```
+let myCar: [number, string, string] = [
+  2002,
+  "Toyota",
+  "Corolla",
+]
+```
+
+WARNING: As of (TypeScript 4.3)[https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-3.html#separate-write-types-on-properties], there’s limited support for enforcing tuple length constraints. `push` and `pop` get around it.
+
+## Chapter 4: Sturctured vs Nominal types
 
