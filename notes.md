@@ -128,3 +128,36 @@ Typescript is statis (checks at compile time vs runtime) and structural (type ch
 it cares about whether it has the corresponding properties with type equivalencies). Structural can be thought of similarily to the adage: "If it quacks like a duck, walks like a duck,... it's a duck" (though the phrase is mostly attributed to dynamic type systems).
 
 ## Chapter 5: Unions & Intersection Types
+
+Union types are equivalent to `|` operator (inclusion)
+
+Here's an example of a more complex union type:
+`
+function flipCoin(): "heads" | "tails" {
+  if (Math.random() > 0.5) return "heads"
+  return "tails"
+}
+ 
+function maybeGetUserInfo():
+  | ["error", Error]
+  | ["success", { name: string; email: string }] {
+  if (flipCoin() === "heads") {
+    return [
+      "success",
+      { name: "Mike North", email: "mike@example.com" },
+    ]
+  } else {
+    return [
+      "error",
+      new Error("The coin landed on TAILS :("),
+    ]
+  }
+}
+ 
+const outcome = maybeGetUserInfo()
+
+// const outcome: ["error", Error] | ["success", {
+//  name: string;
+//  email: string;
+// }]
+`
