@@ -127,4 +127,4 @@ WARNING: As of (TypeScript 4.3)[https://www.typescriptlang.org/docs/handbook/rel
 Typescript is statis (checks at compile time vs runtime) and structural (type checking doesn't care about the constructor name,
 it cares about whether it has the corresponding properties with type equivalencies). Structural can be thought of similarily to the adage: "If it quacks like a duck, walks like a duck,... it's a duck" (though the phrase is mostly attributed to dynamic type systems).
 
-## Chapter 5: 
+## Chapter 5: Unions & Intersection Types
