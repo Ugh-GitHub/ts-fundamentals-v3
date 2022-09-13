@@ -161,3 +161,12 @@ const outcome = maybeGetUserInfo()
 //  email: string;
 // }]
 `
+
+If the tuple is destructured, we end up with `const first: "error" | "success"` and `const second: Error | {
+    name: string;
+    email: string;
+}`.
+
+The first one registers as a string (as all possibilities are strings), while the second one only has the `name` property available, as that is the only property available to both the `Error` class and to this specific 'user info object.'
+
+
