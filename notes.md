@@ -169,4 +169,14 @@ If the tuple is destructured, we end up with `const first: "error" | "success"` 
 
 The first one registers as a string (as all possibilities are strings), while the second one only has the `name` property available, as that is the only property available to both the `Error` class and to this specific 'user info object.'
 
+##### Typeguarding & Narrowing
+
+(Overview)[https://www.typescriptlang.org/docs/handbook/2/narrowing.html]
+
+Type guards are expressions, which when used with control flow statement, allow us to have a more specific type for a particular value.
+
+`instanceof` is a great tool for typeguarding, but can also use `typeof` + `===` and other methods (see Overview for details). The typescript compiler recognizes these instances as narrowing 
+
+
+
 
