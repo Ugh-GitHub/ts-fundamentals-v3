@@ -175,7 +175,73 @@ The first one registers as a string (as all possibilities are strings), while th
 
 Type guards are expressions, which when used with control flow statement, allow us to have a more specific type for a particular value.
 
-`instanceof` is a great tool for typeguarding, but can also use `typeof` + `===` and other methods (see Overview for details). The typescript compiler recognizes these instances as narrowing 
+`instanceof` is a great tool for typeguarding, but can also use `typeof` + `===` and other methods (see Overview for details). The typescript compiler recognizes these instances as narrowing.
+
+(Discriminated or Tagged Unions)[https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#discriminated-unions] exist in TS (kind of like `data` in Haskell), where each type contains a common property.
+
+Lastly, (Intersection Types)[https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#intersections] exist and are`&` sign associated. Not a lot of info on this one, as they're far less common to use. More info from (the following)[https://www.typescriptlang.org/play?ssl=83&ssc=1&pln=27&pc=1#code/PTAEBUE8AcFNQK4DsCWB7JBnUBDATvDqAO46ShoBmoAJrAMYA2+KSA5qAC4AWOnuSCgCMAVg04BYAFAhQ9NAkY1QQ+AFs0BLr0EZ4nGLAB006QbigAypzys2AeTwA5BGtV5QAXlCYbd0AA+oEiu7gDcZoagAAp4aPSwmJjWfIleoABEaHBIGYGZTGiYsDQZEVLm8PY0NC5usHiYAKpIdHjgsILeAIz5AMz5AKz5AOz5AJzllaAAggCyiZiQLehdmdywjIxoeUHdgwBs+QDeoA1xeABcXHgI8AC+5dKyAJLUPPAIxRTUWTl5OFaBW2xVKoAAbthfLZ2KAUJhnmAkLBiFw0KBIAoADRyDb0ADWFAQnGusAAHjg1NBGLBLowUJwGjhGAipIjQAB1eD0QGgNQoMm0FCUSgNTr8SrYVicdFEZCrHGAmjs4i8fjEWAAci0mDI-nh2j42ng4OZdzh2D0P20RX0hkwJjZMjAUDglnotmg6pQW2NghpOHB8ExCDRoEoKDYCC0Cn43DQqJl7LojLw-ORJG4KHo3AhZvgDLkCiUKkI-FuSE4KDUxlMztAKww2B5gkwaBrVZr2FUiFaDXTJRU5GmxBQdFQ7Cx7MomjOFKpNMudemHNYNATKUZ2G8f06u2BtrBQQy6erKAAXiV99C7E9628MQpQPGgx4cEI0EGcSG5Lzivo1U5NcN04VJWVkVR5C7XAfD8WEAFpgjQCUNl7VYjAgLMpWbT8xWUVh2XJSlqVpSp4NHcc7HgpV4KQfA4lHdg61eag5VQDALQEUB7AAJRxD5BF5aUGmKegqw4g1eRmJwABFHVeSsRPEVYuHtXAtFVTouGIdFJThRTGnEMMPVgVJ2SIZFE0MDDwCw3AtgTbAZw8aYoOgIoGXQuthLwSgcASUAAFE8AuAAJJV6VhY5pFAHwEHoBIkmuD80ADJByli85NAAfmuU4u11NhaVgmEOEeaR7m8gy-ICmY8E4HS8HxTAZL4IhoqkWL8AazRmryrgGUXEr-HuABtABdcpKqdHyavgOqq18Fq2tADquvq+FOEwfq6Jra4b1hMbJoq5iXQ2b5Zv8tIW1LIsqUPfTQAITB3KwNJVWzXNeCDdkPx4IssE28UzhC2cdBoSK2EVIEPhQDwE0EGg2sdSILAWxrmp4xJXu+bx0d65bQNAAAyILQbwcLWkhqYogWzbMCxl6m3gPGNqW1qidJ4Kwoi29TtAAAxWciIXWk63kLA4wi2A6aWxmcZZ0AAApnoV65Za2+XmYASi8AA+VaYrhagVex5mjCyvBdbW2KAbbGkLfJ02mbex2LiMAqcCK7WMttghOGjdKjemo2Jft4xtjYZ2FaMbr6Z9iq71kGY+QFa0XgM0TxMEoFG0EPTIPbNICGZRhIHZL5YEoRRMy0n9vu5HBimwTStF5NBRCM3hsCTetWCYBA6AoDMqG09FTUYO5tqq1M5tAABhEvGQ1gAhdAV6b+Abbj3wXhk-a4LYX2eDhmhom6yBcpUNBUtMoOpBDiookX0zl7Zzg17QLGAEcp-4bwX6pFXuvTeJNlanG4JwNQjAD6lVAPcE4fJ8D4nXMQJAsCRoJydLIJwCZHyhhuhgMucgl6ECerAX+iR1QbEED+fuk86DmXfnvAQyhYAMg2B4SB0CKAeDUMg1BSBxZNnVL1OwP8-7XEAW-RaH90ASKoekbezD96ZCEICZqkAMhTk6kgpqgjrgZA3kgTRnFeSAgwJADQXwgrsGYK0eC6jQSgDYHgHAIpPLqVkUYHx2jE7CMlioHANAFG+CkaQ4BX8KF-yUUbHenA96GPUSYpYfiH7lCAA]
+`
+// If a union is an OR, then an intersection is an AND.
+// Intersection types are when two types intersect to create
+// a new type. This allows for type composition.
+
+interface ErrorHandling {
+  success: boolean;
+  error?: { message: string };
+}
+
+interface ArtworksData {
+  artworks: { title: string }[];
+}
+
+interface ArtistsData {
+  artists: { name: string }[];
+}
+
+// These interfaces can be composed in responses which have
+// both consistent error handling, and their own data.
+
+type ArtworksResponse = ArtworksData & ErrorHandling;
+type ArtistsResponse = ArtistsData & ErrorHandling;
+
+// For example:
+
+const handleArtistsResponse = (response: ArtistsResponse) => {
+  if (response.error) {
+    console.error(response.error.message);
+    return;
+  }
+
+  console.log(response.artists);
+};
+
+// A mix of Intersection and Union types becomes really
+// useful when you have cases where an object has to
+// include one of two values:
+
+interface CreateArtistBioBase {
+  artistID: string;
+  thirdParty?: boolean;
+}
+
+type CreateArtistBioRequest = CreateArtistBioBase & ({ html: string } | { markdown: string });
+
+// Now you can only create a request when you include
+// artistID and either html or markdown
+
+const workingRequest: CreateArtistBioRequest = {
+  artistID: "banksy",
+  markdown: "Banksy is an anonymous England-based graffiti artist...",
+};
+
+const badRequest: CreateArtistBioRequest = {
+  artistID: "banksy",
+};
+`
+
+## Chapter 6
+
+
 
 
 
