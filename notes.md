@@ -239,10 +239,29 @@ const badRequest: CreateArtistBioRequest = {
 };
 `
 
-## Chapter 6
+## Chapter 6: Type Aliasing and Interfaces
 
+Type aliases allow for more meaningful naming conventions, a singular location for the definition of types, and importing and exporting of types as you would a function or class. Other advantages include cleaner and more semantic tooltips.
 
+`
+// @filename: types.ts
+type UserContactInfo = {
+  name: string
+  email: string
+}
+`
 
+When aliasing a type, the `=` operator is used, `TitleCase` is used, and an alias with a given name can only be declared once in a given scope. Aliases can hold any type. Aliases can also take advantage of intersections (`&`) to allow existing types to be repurposed in different ways. While types do not have a true `extends` keyword that defines them, this pattern has a very similar effect.
 
+`
+type SpecialDate = Date & { getReason(): string }
+ 
+const newYearsEve: SpecialDate = {
+  ...new Date(),
+  getReason: () => "Last day of the year",
+}
+newYearsEve.getReason
+`
 
+##### Interfaces
 
