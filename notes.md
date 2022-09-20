@@ -251,7 +251,7 @@ type UserContactInfo = {
 }
 `
 
-When aliasing a type, the `=` operator is used, `TitleCase` is used, and an alias with a given name can only be declared once in a given scope. Aliases can hold any type. Aliases can also take advantage of intersections (`&`) to allow existing types to be repurposed in different ways. While types do not have a true `extends` keyword that defines them, this pattern has a very similar effect.
+When aliasing a type, the `=` operator is used, `TitleCase` is used, and an alias with a given name can only be declared once in a given scope. Aliases can hold any type. (Inheritance) Aliases can also take advantage of intersections (`&`) to allow existing types to be repurposed in different ways. While types do not have a true `extends` keyword that defines them, this pattern has a very similar effect.
 
 `
 type SpecialDate = Date & { getReason(): string }
@@ -265,3 +265,15 @@ newYearsEve.getReason
 
 ##### Interfaces
 
+An (Interface)[https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces] is a way of defining an (object type)[https://www.typescriptlang.org/docs/handbook/2/objects.html]. An "object type" can be thought of as, "an instance of a class could conceivably look like this" (?).
+
+For example, `string | number` is not an object type, as it uses the union type operator. Like type aliases, interfaces can be imported/exported between modules just like values, and they serve to provide a “name” for a specific type.
+
+`
+interface UserInfo {
+  name: string
+  email: string
+}
+`
+
+Inheritance in interfaces is a bit broader and more complex than in aliases. `Extends` 
