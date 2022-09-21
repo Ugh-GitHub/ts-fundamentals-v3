@@ -265,7 +265,7 @@ newYearsEve.getReason
 
 ##### Interfaces
 
-An (Interface)[https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces] is a way of defining an (object type)[https://www.typescriptlang.org/docs/handbook/2/objects.html]. An "object type" can be thought of as, "an instance of a class could conceivably look like this" (?). Easiest to think of them as a contract of how the code is to be structured. Easiest technical def is that an interface is an abstract type used to define the behavior of a class. It's used to achieve abstraction (where only the essential details are displayed to the user, or identifying only the relevant characteristics of an object, i.e. how to make a car accelerate or break, not how these systems work).
+An (Interface)[https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces] is a way of defining an (object type)[https://www.typescriptlang.org/docs/handbook/2/objects.html]. An "object type" can be thought of as, "an instance of a class could conceivably look like this" (?). Easiest to think of them as a contract of how the code is to be structured. Easiest technical def is that an interface is an abstract type used to define the behavior of a class. It's used to achieve abstraction (where only the essential details are displayed to the user, or identifying only the relevant characteristics of an object, i.e. how to make a car accelerate or break, not how these systems work). Refer to `Extends_v_Implements` for more details about the differences.
 
 For example, `string | number` is not an object type, as it uses the union type operator. Like type aliases, interfaces can be imported/exported between modules just like values, and they serve to provide a “name” for a specific type.
 
@@ -279,7 +279,14 @@ function printUserInfo(info: UserInfo) {
 }
 `
 
-Inheritance in interfaces is a bit broader and more complex than in aliases. `Extends`
+Inheritance in interfaces is a bit broader and more complex than in aliases. 
+
+`Extends`
+
+If you’ve ever seen a JavaScript class that “inherits” behavior from a base class, you’ve seen an example of what TypeScript calls a heritage clause: extends
+
+Just as in in JavaScript, a subclass extends from a base class.
+Additionally a “sub-interface” extends from a base interface, as shown in the example below
 
 `
 class Animal {
@@ -297,3 +304,21 @@ const d = new Dog()
 d.eat
 d.bark
 `
+
+`
+interface Animal {
+  isAlive(): boolean
+}
+interface Mammal extends Animal {
+  getFurOrHairColor(): string
+}
+interface Dog extends Mammal {
+  getBreed(): string
+}
+function careForDog(dog: Dog) {
+  \\ have access to all three methods
+}
+`
+
+`IMPLEMENTS`
+TypeScript adds a second heritage clause that can be used to state that a given class should produce instances that conforms to a given interface.
