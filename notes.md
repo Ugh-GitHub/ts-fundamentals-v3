@@ -265,7 +265,7 @@ newYearsEve.getReason
 
 ##### Interfaces
 
-An (Interface)[https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces] is a way of defining an (object type)[https://www.typescriptlang.org/docs/handbook/2/objects.html]. An "object type" can be thought of as, "an instance of a class could conceivably look like this" (?).
+An (Interface)[https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces] is a way of defining an (object type)[https://www.typescriptlang.org/docs/handbook/2/objects.html]. An "object type" can be thought of as, "an instance of a class could conceivably look like this" (?). Easiest to think of them as a contract of how the code is to be structured. Easiest technical def is that an interface is an abstract type used to define the behavior of a class. It's used to achieve abstraction (where only the essential details are displayed to the user, or identifying only the relevant characteristics of an object, i.e. how to make a car accelerate or break, not how these systems work).
 
 For example, `string | number` is not an object type, as it uses the union type operator. Like type aliases, interfaces can be imported/exported between modules just like values, and they serve to provide a “name” for a specific type.
 
@@ -274,6 +274,26 @@ interface UserInfo {
   name: string
   email: string
 }
+function printUserInfo(info: UserInfo) {
+  info.name
+}
 `
 
-Inheritance in interfaces is a bit broader and more complex than in aliases. `Extends` 
+Inheritance in interfaces is a bit broader and more complex than in aliases. `Extends`
+
+`
+class Animal {
+  eat(food) {
+    consumeFood(food)
+  }
+}
+class Dog extends Animal {
+  bark() {
+    return "woof"
+  }
+}
+ 
+const d = new Dog()
+d.eat
+d.bark
+`
