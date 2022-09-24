@@ -322,3 +322,48 @@ function careForDog(dog: Dog) {
 
 `IMPLEMENTS`
 TypeScript adds a second heritage clause that can be used to state that a given class should produce instances that conforms to a given interface.
+
+`
+interface AnimalLike {
+  eat(food): void
+}
+ 
+class Dog implements AnimalLike {
+  bark() {
+    return "woof"
+  }
+  eat(food) {
+    consumeFood(food)
+  }
+}
+`
+
+While TypeScript (and JavaScript) does not support true multiple inheritance (extending from more than one base class), this implements keyword gives us the ability to validate, at compile time, that instances of a class conform to one or more “contracts” (types). Note that both extends and implements can be used together:
+
+`
+class LivingOrganism {
+  isAlive() {
+    return true
+  }
+}
+interface AnimalLike {
+  eat(food): void
+}
+interface CanBark {
+  bark(): string
+}
+ 
+class Dog
+  extends LivingOrganism
+  implements AnimalLike, CanBark
+{
+  bark() {
+    return "woof"
+  }
+  eat(food) {
+    consumeFood(food)
+  }
+}
+`
+
+Can use `implements` without aliasing, but don't?
