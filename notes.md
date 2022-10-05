@@ -367,3 +367,5 @@ class Dog
 `
 
 Can use `implements` without aliasing, but don't?
+
+test
